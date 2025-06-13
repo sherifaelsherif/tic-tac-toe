@@ -1,10 +1,11 @@
-name: Build & Run Tests
+ name: Build & Run Tests
 
 on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
 
@@ -12,7 +13,10 @@ jobs:
       run: git submodule update --init --recursive
 
     - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install cmake g++ libgtest-dev
+      run: sudo apt-get update && sudo apt-get install -y cmake g++ libgtest-dev
+
+    - name: Clean previous build
+      run: rm -rf build
 
     - name: Configure project
       run: cmake -S . -B build
@@ -22,4 +26,5 @@ jobs:
 
     - name: Run tests
       run: ./build/run_tests
+
 
