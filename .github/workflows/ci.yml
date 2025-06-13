@@ -1,4 +1,4 @@
- name: CMake Build & Test (Ubuntu)
+ name: CMake Build & Test
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
     - name: Checkout repository with submodules
       uses: actions/checkout@v3
       with:
-        submodules: recursive  # Make sure googletest is pulled too
+        submodules: recursive
 
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y cmake g++ make
